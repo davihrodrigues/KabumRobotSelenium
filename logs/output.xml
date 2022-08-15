@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.1 on win32)" generated="20220814 22:28:00.419" rpa="false" schemaversion="3">
+<suite id="s1" name="Departamento" source="C:\Users\davi_\OneDrive\Documentos\projetos\kabumteste\scenarios\Departamento.robot">
+<test id="s1-t1" name="Departamentos" line="8">
+<kw name="Abrir Browser" library="base" type="SETUP">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver.chrome.options'].Options()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220814 22:28:00.900" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000026C1A26C6A0&gt;</msg>
+<status status="PASS" starttime="20220814 22:28:00.900" endtime="20220814 22:28:00.900"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--disable-notifications</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20220814 22:28:00.900" endtime="20220814 22:28:00.901"/>
+</kw>
+<kw name="Create Webdriver" library="SeleniumLibrary">
+<var>${driver}</var>
+<arg>Chrome</arg>
+<arg>options=${options}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<msg timestamp="20220814 22:28:00.901" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg timestamp="20220814 22:28:02.718" level="INFO">${driver} = 1</msg>
+<status status="PASS" starttime="20220814 22:28:00.901" endtime="20220814 22:28:02.718"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220814 22:28:02.719" level="INFO">Opening url 'https://kabum.com.br'</msg>
+<status status="PASS" starttime="20220814 22:28:02.719" endtime="20220814 22:28:04.886"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220814 22:28:04.887" endtime="20220814 22:28:05.037"/>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${passed}</var>
+<arg>Wait Until Page Contains Element</arg>
+<arg>${labelCookie}</arg>
+<arg>30</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${labelCookie}</arg>
+<arg>30</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<msg timestamp="20220814 22:28:35.297" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20220814 22:28:35.298" level="FAIL">Element '//*[@id='onetrust-group-container']' did not appear in 30 seconds.</msg>
+<status status="FAIL" starttime="20220814 22:28:05.037" endtime="20220814 22:28:35.300"/>
+</kw>
+<msg timestamp="20220814 22:28:35.300" level="INFO">${passed} = False</msg>
+<status status="PASS" starttime="20220814 22:28:05.037" endtime="20220814 22:28:35.300"/>
+</kw>
+<if>
+<branch type="IF" condition="${passed}">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${botãoAceitarCookie}</arg>
+<arg>30</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="NOT RUN" starttime="20220814 22:28:35.301" endtime="20220814 22:28:35.301"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${botãoAceitarCookie}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220814 22:28:35.302" endtime="20220814 22:28:35.302"/>
+</kw>
+<status status="NOT RUN" starttime="20220814 22:28:35.301" endtime="20220814 22:28:35.302"/>
+</branch>
+<branch type="ELSE">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>KaBuM! | Maior E-commerce de Tecnologia e Games da América Latina</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20220814 22:28:35.494" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20220814 22:28:35.494" level="FAIL">Title should have been 'KaBuM! | Maior E-commerce de Tecnologia e Games da América Latina' but was 'kabum.com.br'.</msg>
+<status status="FAIL" starttime="20220814 22:28:35.302" endtime="20220814 22:28:35.517"/>
+</kw>
+<status status="FAIL" starttime="20220814 22:28:35.302" endtime="20220814 22:28:35.517"/>
+</branch>
+<status status="FAIL" starttime="20220814 22:28:35.301" endtime="20220814 22:28:35.517"/>
+</if>
+<status status="FAIL" starttime="20220814 22:28:00.899" endtime="20220814 22:28:35.518"/>
+</kw>
+<kw name="Fechar Browser" library="base" type="TEARDOWN">
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220814 22:28:35.907" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220814 22:28:35.521" endtime="20220814 22:28:35.908"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220814 22:28:35.908" endtime="20220814 22:28:38.185"/>
+</kw>
+<status status="PASS" starttime="20220814 22:28:35.520" endtime="20220814 22:28:38.186"/>
+</kw>
+<status status="FAIL" starttime="20220814 22:28:00.898" endtime="20220814 22:28:38.187">Setup failed:
+Title should have been 'KaBuM! | Maior E-commerce de Tecnologia e Games da América Latina' but was 'kabum.com.br'.</status>
+</test>
+<status status="FAIL" starttime="20220814 22:28:00.422" endtime="20220814 22:28:38.190"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Departamento">Departamento</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
