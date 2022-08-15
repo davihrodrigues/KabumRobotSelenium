@@ -9,8 +9,9 @@ $ pip install robotframework-seleniumlibrary
 
 ### Executar a automação
 
-Executar o regressivo: 
+1. Executar o regressivo: 
 $ robot -d ../logs/ scenarios
-Executar um dos cenarios: 
+
+2. Executar um dos cenarios: 
 $ cd scenarios
 $ robot -d ../logs/ nomedocenario.robot
